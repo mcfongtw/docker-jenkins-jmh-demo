@@ -12,9 +12,8 @@ RUN apt-get update && apt-get install -y g++
 RUN apt-get update && \
         apt-get install -y zip unzip;
 
-WORKDIR /opt
 RUN curl -s "https://get.sdkman.io" | bash
-ENV SDKMAN_DIR /opt/.sdkman/
+ENV SDKMAN_DIR /root/.sdkman/
 RUN set -x \
     && echo "sdkman_auto_answer=true" > $SDKMAN_DIR/etc/config \
     && echo "sdkman_auto_selfupdate=false" >> $SDKMAN_DIR/etc/config \
