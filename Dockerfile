@@ -25,7 +25,7 @@ RUN /bin/bash -c " source $SDKMAN_DIR/bin/sdkman-init.sh && sdk install maven"
 RUN chown -R jenkins:jenkins $SDKMAN_DIR
 #######################################################
 # jmh-visualizer 
-RUN curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
+RUN curl -sL https://rpm.nodesource.com/setup_6.x | bash
 RUN apt-get update && apt-get install -y git nodejs
  
 RUN node -v
