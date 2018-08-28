@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y git nodejs
  
 RUN node -v
  
-RUN git  --depth=1 clone https://github.com/jzillmann/jmh-visualizer /root/jmh-visualizer 
+RUN git clone --depth=1 https://github.com/jzillmann/jmh-visualizer /root/jmh-visualizer 
 WORKDIR /root/jmh-visualizer
  
 RUN npm install
