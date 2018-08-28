@@ -24,6 +24,21 @@ RUN /bin/bash -c " source $SDKMAN_DIR/bin/sdkman-init.sh && sdk install maven"
 
 RUN chown -R jenkins:jenkins $SDKMAN_DIR
 #######################################################
+# jmh-visualizer 
+RUN curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
+RUN apt-get update && apt-get install -y git nodejs
+ 
+RUN node -v
+ 
+RUN git  --depth=1 clone https://github.com/jzillmann/jmh-visualizer /root/jmh-visualizer 
+WORKDIR /root/jmh-visualizer
+ 
+RUN npm install
+ 
+RUN npm run deploy
+ 
+#######################################################
+
 WORKDIR /var/jenkins_home
 
 USER jenkins
