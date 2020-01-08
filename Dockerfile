@@ -35,34 +35,16 @@ RUN apt-get clean
 RUN curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 
 #######################################################
-# SDKMan
-
-# Prerequisites
-RUN apt-get update && apt-get install -y g++
-RUN apt-get update && apt-get install -y curl wget unzip zip
-
-####################################################### 
-RUN apt-get update && \
-        apt-get install -y zip unzip;
-
-RUN curl -s "https://get.sdkman.io" | bash
-ENV SDKMAN_DIR /root/.sdkman/
-RUN set -x \
-    && echo "sdkman_auto_answer=true" > $SDKMAN_DIR/etc/config \
-    && echo "sdkman_auto_selfupdate=false" >> $SDKMAN_DIR/etc/config \
-    && echo "sdkman_insecure_ssl=false" >> $SDKMAN_DIR/etc/config
-
-# Maven
-RUN /bin/bash -c " source $SDKMAN_DIR/bin/sdkman-init.sh && sdk install maven"
-
-RUN chown -R jenkins:jenkins $SDKMAN_DIR
-#######################################################
 
 WORKDIR /var/jenkins_home
 
 USER jenkins
 
+# jenkins home dir
 VOLUME /var/jenkins_home
+
+# git repo dir
+VOLUME /home/git.repo
 
 EXPOSE 8080
 
